@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>ASAPITSOLUTION</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto&family=Inter&family=Roboto+Mono&display=swap"
+    rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      overflow-x: hidden;
+      /* Prevent horizontal scroll */
+    }
+
+    .font-logo {
+      font-family: 'Roboto Slab', serif;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #3a2e4d 0%, #00a8f1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    .dropdown-mobile {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+
+    .dropdown-mobile.active {
+      max-height: 500px;
+      /* Adjust based on your content */
+    }
+
+    /* Remove duplicate styles */
+    .font-inter {
+      font-family: "Inter", sans-serif;
+    }
+
+    .font-roboto-mono {
+      font-family: "Roboto Mono", monospace;
+    }
+  </style>
+</head>
+
+<body class="m-0 p-0">
+  <header class="w-full bg-white shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center px-6 py-4">
+      <div class="flex items-center space-x-4">
+        <div
+          class="w-16 h-16 bg-gradient-to-r from-[#00a8f1] to-[#3a2e4d] rounded-full flex items-center justify-center">
+          <span class="text-white font-bold text-2xl">AI</span>
+        </div>
+        <div class="leading-tight">
+          <h1 class="font-logo text-3xl gradient-text font-bold">Asap IT Solutions</h1>
+          <p class="text-[#0f5f7f] text-sm mt-1">Innovative Technology Partners</p>
+        </div>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block">
+        <ul class="flex space-x-8 text-[#0f5f7f] font-medium text-base">
+          <li>
+            <a class="text-[#4a1f1f] hover:text-[#00a8f1] transition-colors border-b-2 border-transparent hover:border-[#00a8f1] pb-1"
+              href="#">
+              Home
+            </a>
+          </li>
+          <li class="relative group">
+            <a class="inline-flex items-center hover:text-[#00a8f1] transition-colors" href="#">
+              Services
+              <i class="fas fa-caret-down ml-1 text-sm"></i>
+            </a>
+            <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10 hidden group-hover:block">
+              <a href="about.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Web Development</a>
+              <a href="about.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Mobile Apps</a>
+              <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Cloud Solutions</a>
+              <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">AI Services</a>
+            </div>
+          </li>
+          <li>
+            <a href="product.html" class="hover:text-[#00a8f1] transition-colors">
+              Products
+            </a>
+          </li>
+          <li>
+            <a href="OurInternship.html" class="hover:text-[#00a8f1] transition-colors">
+              Internships
+            </a>
+          </li>
+          <li class="relative group">
+            <a class="inline-flex items-center hover:text-[#00a8f1] transition-colors" href="error.html">
+              Jobs
+              <i class="fas fa-caret-down ml-1 text-sm"></i>
+            </a>
+            <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10 hidden group-hover:block">
+              <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Current Openings</a>
+              <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Apply Now</a>
+              <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Career Growth</a>
+            </div>
+          </li>
+          <li>
+            <a href="verification.html" class="hover:text-[#00a8f1] transition-colors">
+              Verification
+            </a>
+          </li>
+          <li>
+            <a href="about.html" class="hover:text-[#00a8f1] transition-colors">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="https://forms.gle/QMDtCizZ9LkdP6d4A" class="hover:text-[#00a8f1] transition-colors">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuButton" class="md:hidden text-[#0f5f7f] text-2xl focus:outline-none">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-white z-40 pt-20 px-6 md:hidden">
+      <ul class="space-y-4 text-[#0f5f7f] font-medium text-lg">
+        <li>
+          <a class="block py-2 border-b border-gray-100" href="Index.html">
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="dropdown-toggle flex justify-between items-center py-2 border-b border-gray-100 cursor-pointer">
+            <span>Services</span>
+            <i class="fas fa-caret-down"></i>
+          </div>
+          <div class="dropdown-mobile pl-4">
+            <a href="error.html" class="block py-2 text-gray-600">Web Development</a>
+            <a href="error.html" class="block py-2 text-gray-600">Mobile Apps</a>
+            <a href="error.html" class="block py-2 text-gray-600">Cloud Solutions</a>
+            <a href="error.html" class="block py-2 text-gray-600">AI Services</a>
+          </div>
+        </li>
+        <li>
+          <a class="block py-2 border-b border-gray-100" href="product.html">
+            Products
+          </a>
+        </li>
+        <li>
+          <a class="block py-2 border-b border-gray-100" href="OurInternship.html">
+            Internships
+          </a>
+        </li>
+        <li>
+          <div class="dropdown-toggle flex justify-between items-center py-2 border-b border-gray-100 cursor-pointer">
+            <span>Jobs</span>
+            <i class="fas fa-caret-down"></i>
+          </div>
+          <div class="dropdown-mobile pl-4">
+            <a href="error.html" class="block py-2 text-gray-600">Current Openings</a>
+            <a href="error.html" class="block py-2 text-gray-600">Apply Now</a>
+            <a href="error.html" class="block py-2 text-gray-600">Career Growth</a>
+          </div>
+        </li>
+        <li>
+          <a class="block py-2 border-b border-gray-100" href="verification.html">
+            Verification
+          </a>
+        </li>
+        <li>
+          <a class="block py-2 border-b border-gray-100" href="about.html">
+            About Us
+          </a>
+        </li>
+        <li>
+          <a class="block py-2 border-b border-gray-100" href="https://forms.gle/QMDtCizZ9LkdP6d4A">
+            Contact Us
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="w-full min-h-[400px] flex flex-col justify-center items-center px-4 text-center"
+    style="background-color: #d3d3e9;">
+    <img alt="Abstract light purple background with white curved shapes"
+      class="absolute inset-0 w-full h-full object-cover -z-10" height="600"
+      src="https://storage.googleapis.com/a1aa/image/9af05657-27d1-4b5b-29d0-12db9e1f7877.jpg" width="1920" />
+    <h2 class="max-w-5xl text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#4a1f1f] leading-tight">
+      Take Your Career to the Next Level with
+      <span class="font-extrabold text-[#00a8f1]">Asap IT Solutions</span>
+    </h2>
+    <p class="mt-8 text-2xl text-[#0f3f3f] font-normal max-w-3xl">
+      Join Our Exciting Internship Journey
+    </p>
+    <button
+      class="mt-8 bg-[#00a8f1] hover:bg-[#0088cc] text-white rounded-full px-8 py-3 text-lg font-medium transition-colors shadow-lg hover:shadow-xl"><a
+        href="https://forms.gle/j7MYK8DZKbrqsWqdA">
+        Apply Now</a>
+    </button>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      mobileMenuButton.addEventListener('click', function () {
+        mobileMenu.classList.toggle('active');
+        // Change icon between bars and times (X)
+        const icon = this.querySelector('i');
+        if (mobileMenu.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+
+      // Mobile dropdown toggles
+      const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+      dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function () {
+          const dropdown = this.nextElementSibling;
+          dropdown.classList.toggle('active');
+
+          // Rotate caret icon
+          const icon = this.querySelector('i');
+          icon.classList.toggle('rotate-180');
+        });
+      });
+
+      // Close mobile menu when clicking on a link
+      const mobileLinks = document.querySelectorAll('#mobileMenu a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('active');
+          const icon = mobileMenuButton.querySelector('i');
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        });
+      });
+    });
+  </script>
+
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
+  </head>
+
+  <body class="bg-[#e3edf0]">
+    <div
+      class="max-w-7xl mx-auto px-4 py-10 md:py-20 flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-20">
+      <img
+        alt="Illustration of a computer monitor displaying colorful code lines with icons representing coding, cloud download, email, and settings around it"
+        class="w-72 md:w-[300px] flex-shrink-0" height="300"
+        src="https://storage.googleapis.com/a1aa/image/516d4445-eaa4-47df-32b7-5a79eaec5acc.jpg" width="300" />
+      <div class="max-w-xl text-center md:text-left">
+        <h1 class="text-[#4a7a95] font-semibold text-xl md:text-2xl underline decoration-[#4a7a95] decoration-2 mb-6">
+          We Provide All Exclusive services For Clients
+        </h1>
+        <h2 class="text-[#2a2e37] font-extrabold text-2xl md:text-3xl leading-tight mb-6">
+          We build websites and web applications.
+        </h2>
+        <p class="text-[#2a2e37] text-base md:text-lg mb-6">
+          Today, every business should have a website.
+        </p>
+        <p class="text-[#2a2e37] text-base md:text-lg mb-6">
+          No matter how small or large your business, having a website is must have at this time.
+        </p>
+        <p class="text-[#2a2e37] text-base md:text-lg mb-10">
+          Having a website help you to maintain your online presence.
+        </p>
+        <div class="flex justify-center md:justify-start">
+          <button
+            class="bg-[#0099f7] text-[#0a0a0a] text-lg font-medium rounded-full px-8 py-2 shadow-md hover:shadow-lg transition-shadow"
+            type="button"><a href="https://forms.gle/QMDtCizZ9LkdP6d4A"> Contact Us</a>
+
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    </head>
+
+    <body class="bg-white text-gray-900 font-sans">
+      <div class="max-w-7xl mx-auto px-6 py-16">
+        <section class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
+          <img
+            alt="Illustration of a web development team working on HTML5 and various devices including a desktop monitor, laptop, and drone"
+            class="w-72 md:w-80" height="250"
+            src="https://storage.googleapis.com/a1aa/image/585adc9d-4948-404d-96d7-2d4230d5dc72.jpg" width="300" />
+          <div class="max-w-xl">
+            <h2 class="text-xl md:text-2xl font-semibold mb-4">
+              E-Commerce Development.
+            </h2>
+            <p class="mb-4 text-base md:text-lg leading-relaxed">
+              Our talented web development team has years of experience building websites from small to large.
+            </p>
+            <p class="mb-4 text-base md:text-lg leading-relaxed">
+              We deliver projects with 100% user satisfaction.
+            </p>
+            <p class="text-base md:text-lg leading-relaxed">
+              Whatever functionality you need for the web, we will implement it.
+            </p>
+          </div>
+        </section>
+        <section class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24 mt-24">
+          <div class="max-w-xl text-center md:text-left">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4">
+              Need website for your business?
+            </h2>
+            <p class="mb-2 text-base md:text-lg">
+              Want to sell your products online?
+            </p>
+            <p class="mb-6 text-base md:text-lg max-w-md mx-auto md:mx-0">
+              We often develop Ecommerce for businesses who want to sell their products or services online.
+            </p>
+            <p class="mb-6 text-base md:text-lg">
+              Let's move your products towards online...
+            </p>
+            <button class="bg-sky-400 hover:bg-sky-500 text-black font-medium rounded-full px-8 py-3 transition-colors"
+              type="button">
+              <a href="https://forms.gle/QMDtCizZ9LkdP6d4A">Contact Us</a>
+            </button>
+          </div>
+          <img
+            alt="Illustration of people shopping online using laptops and mobile devices with shopping bags and chat bubbles"
+            class="w-72 md:w-80" height="250"
+            src="https://storage.googleapis.com/a1aa/image/62552e3c-420f-4fb8-2ff7-77ddc9c84576.jpg" width="320" />
+        </section>
+      </div>
+      <script src="https://cdn.tailwindcss.com">
+      </script>
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+      </head>
+
+      <body class="bg-white">
+        <div class="max-w-7xl mx-auto px-4 py-8">
+          <h2 class="text-center text-[#0a2e4e] font-semibold text-lg mb-8">
+            INTERNSHIPS WE OFFER!
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of web development with computer screens and people working" class="mb-3"
+                height="120" src="https://storage.googleapis.com/a1aa/image/1eb58350-613c-4969-30d0-2db4270e8176.jpg"
+                width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Web Development
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of Android development with crane and mobile phone" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/8dd57b02-6ad9-4bba-d08b-8a61708d7f8e.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Android Development
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of data science with person analyzing charts" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/ce85e464-ec4b-4918-2acd-dce425b5cece.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Data Science
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of Java programming with people and large Java text" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/3dfb120f-05ea-473f-10c1-b5a361313c32.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Java Programming
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of C++ programming with people coding on computer" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/7086cf65-96c1-4f52-2ef4-1efa5af3f8cc.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                C++ Programming
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of Python programming with Python logo" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/a4889bbf-6180-4798-6b73-0841b012bff9.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Python Programming
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of UI/UX design with computer screen and design elements" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/d6cabd57-2428-40a9-2a62-c04b34507075.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                UI/UX Design
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of artificial intelligence with robotic hand and digital icons" class="mb-3"
+                height="120" src="https://storage.googleapis.com/a1aa/image/21ab93ea-4776-4a2c-14b5-507aebf97223.jpg"
+                width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Artificial intelligence
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of machine learning with futuristic technology and talent text" class="mb-3"
+                height="120" src="https://storage.googleapis.com/a1aa/image/908599eb-9b35-4f1f-6961-bd3d075a4738.jpg"
+                width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Machine learning
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of Flutter developer with mobile phone and code" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/cae7fde3-189c-48c3-7da4-0425eff27190.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                Flutter Developer
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of ReactJS developer with React logo" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/493612f3-d8ad-4574-8900-63484a4eb031.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                ReactJS Developer
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+              <img alt="Illustration of JavaScript developer with yellow JS logo" class="mb-3" height="120"
+                src="https://storage.googleapis.com/a1aa/image/30e08907-cec8-49b9-024c-4ceda6ac8665.jpg" width="120" />
+              <h3 class="font-semibold text-[#1a1a1a] text-center mb-3">
+                JavaScript Developer
+              </h3>
+              <button class="bg-[#00a8f3] text-white rounded-full px-8 py-2 text-sm" type="button">
+                <a href="https://forms.gle/j7MYK8DZKbrqsWqdA">Apply</a>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <script src="https://cdn.tailwindcss.com">
+        </script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&amp;display=swap" rel="stylesheet" />
+        <style>
+          body {
+            font-family: "Roboto Mono", monospace;
+          }
+        </style>
+        </head>
+
+        <body class="bg-white text-gray-900">
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+              <h2 class="font-extrabold text-xl md:text-2xl">
+                Our Features
+              </h2>
+              <p class="mt-2 text-gray-700 text-sm md:text-base">
+                These are just some of our features. By providing these features, we can
+                make a valuable resource for students looking for internships.
+              </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-20">
+              <div class="flex items-center bg-white rounded-lg shadow-md p-4 space-x-4">
+                <img
+                  alt="Illustration of people around a large smartphone with notifications and icons representing email notifications"
+                  class="w-14 h-14 object-contain flex-shrink-0" height="60"
+                  src="https://storage.googleapis.com/a1aa/image/2e814b7f-44b6-4934-dbba-1d74bbf16e53.jpg" width="60" />
+                <div>
+                  <h3 class="font-extrabold text-sm md:text-base mb-1">
+                    Email Notifications
+                  </h3>
+                  <p class="text-xs md:text-sm text-gray-700">
+                    Receive notifications about important events such as upcoming
+                    deadlines, new assignments, and changes to your schedule.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center bg-white rounded-lg shadow-md p-4 space-x-4">
+                <img
+                  alt="Illustration of a computer screen with simple interface icons and a person interacting with it"
+                  class="w-14 h-14 object-contain flex-shrink-0" height="60"
+                  src="https://storage.googleapis.com/a1aa/image/e96260dc-08cb-4bd1-c8d1-9517d905ace8.jpg" width="60" />
+                <div>
+                  <h3 class="font-extrabold text-sm md:text-base mb-1">
+                    Simple Interface
+                  </h3>
+                  <p class="text-xs md:text-sm text-gray-700">
+                    Our simple interface makes it easy to use and navigate. The
+                    information is presented clearly and concisely.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center bg-white rounded-lg shadow-md p-4 space-x-4">
+                <img
+                  alt="Illustration of a person sitting at a desk with multiple screens showing networking and community icons"
+                  class="w-14 h-14 object-contain flex-shrink-0" height="60"
+                  src="https://storage.googleapis.com/a1aa/image/35f3add6-cedf-4a82-6c30-677dfc692c85.jpg" width="60" />
+                <div>
+                  <h3 class="font-extrabold text-sm md:text-base mb-1">
+                    Large Community
+                  </h3>
+                  <p class="text-xs md:text-sm text-gray-700">
+                    We believe in networking and connecting with other interns who share
+                    similar interests.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center bg-white rounded-lg shadow-md p-4 space-x-4">
+                <img
+                  alt="Illustration of a person sitting at a desk with a calendar and clock representing deadline reminders"
+                  class="w-14 h-14 object-contain flex-shrink-0" height="60"
+                  src="https://storage.googleapis.com/a1aa/image/a0a82720-a063-46f5-d7ba-ff7626738f60.jpg" width="60" />
+                <div>
+                  <h3 class="font-extrabold text-sm md:text-base mb-1">
+                    Deadline Reminders
+                  </h3>
+                  <p class="text-xs md:text-sm text-gray-700">
+                    We send timely reminders via email and Telegram to help you manage
+                    your tasks and deadlines effectively.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-white text-center font-extrabold rounded-lg">
+              <div class="bg-gradient-to-b from-pink-400 to-pink-600 p-8 rounded-xl shadow-[0_0_15px_#ff00cc]">
+                <h4 class="mb-3 text-lg">
+                  SIMPLIFIED INTERNSHIPS
+                </h4>
+                <p class="font-normal text-sm leading-relaxed">
+                  Explore virtual internships in Web Dev, App Dev, Full Stack, ML, and
+                  Data Science with focused learning.
+                </p>
+              </div>
+              <div class="bg-gradient-to-b from-sky-400 to-sky-600 p-8 rounded-xl shadow-[0_0_15px_#00b0ff]">
+                <h4 class="mb-3 text-lg">
+                  BUILD YOUR NETWORK
+                </h4>
+                <p class="font-normal text-sm leading-relaxed">
+                  We believe in networking to connect with other interns who are
+                  interested in the same things.
+                </p>
+              </div>
+              <div class="bg-gradient-to-b from-orange-400 to-orange-600 p-8 rounded-xl shadow-[0_0_15px_#ff8c00]">
+                <h4 class="mb-3 text-lg">
+                  BUILDING STUDENT TRUST
+                </h4>
+                <p class="font-normal text-sm leading-relaxed">
+                  We ensure your success and build a trusted platform for valuable
+                  learning experiences.
+                </p>
+              </div>
+              <div class="bg-gradient-to-b from-emerald-400 to-emerald-600 p-8 rounded-xl shadow-[0_0_15px_#2ecc71]">
+                <h4 class="mb-3 text-lg">
+                  STRUCTURED LEARNING
+                </h4>
+                <p class="font-normal text-sm leading-relaxed">
+                  Enjoy growth-oriented internships at CODSOFT, tailored for maximum
+                  skill development.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <script src="https://cdn.tailwindcss.com">
+          </script>
+          <link href="https://fonts.googleapis.com/css2?family=Inter&amp;display=swap" rel="stylesheet" />
+          <style>
+            body {
+              font-family: "Inter", sans-serif;
+            }
+          </style>
+          </head>
+
+          <body class="bg-white text-gray-800">
+            <section class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+              <h2 class="text-center text-2xl sm:text-3xl font-extrabold text-blue-700">
+                Why Choose Us?
+              </h2>
+              <p class="text-center text-gray-600 mt-2 max-w-xl mx-auto">
+                We bring you the best programs designed to help you succeed in your career.
+              </p>
+              <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                  <img alt="Yellow star icon representing expert mentors" class="mx-auto mb-3" height="40"
+                    src="https://storage.googleapis.com/a1aa/image/3327a4b2-83c1-468b-ed82-8cad0540beae.jpg"
+                    width="40" />
+                  <h3 class="font-semibold text-gray-900 text-lg">
+                    Expert Mentors
+                  </h3>
+                  <p class="text-gray-600 mt-1 text-sm leading-relaxed">
+                    Learn from industry professionals with years of experience in their fields.
+                  </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                  <img alt="Rocket icon representing career growth" class="mx-auto mb-3" height="40"
+                    src="https://storage.googleapis.com/a1aa/image/83ef2bb2-3bed-498d-ca7b-9e9ca2b8e569.jpg"
+                    width="40" />
+                  <h3 class="font-semibold text-gray-900 text-lg">
+                    Career Growth
+                  </h3>
+                  <p class="text-gray-600 mt-1 text-sm leading-relaxed">
+                    Accelerate your career with programs tailored for high-impact roles.
+                  </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                  <img alt="Stack of books icon representing practical learning" class="mx-auto mb-3" height="40"
+                    src="https://storage.googleapis.com/a1aa/image/295781f7-bb0a-4d77-db2e-3b2ad074a8af.jpg"
+                    width="40" />
+                  <h3 class="font-semibold text-gray-900 text-lg">
+                    Practical Learning
+                  </h3>
+                  <p class="text-gray-600 mt-1 text-sm leading-relaxed">
+                    Hands-on projects to ensure you gain real-world skills and knowledge.
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="bg-gray-100 py-12">
+              <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-extrabold text-gray-900">
+                  Our Growing Online Community
+                </h2>
+                <p class="text-gray-700 mt-3 max-w-xl mx-auto leading-relaxed">
+                  Connect with a community of individuals who share your vision, unlocking boundless opportunities and
+                  fostering personal growth as you pursue success.
+                </p>
+                <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+                  <div>
+                    <p class="text-3xl font-extrabold text-blue-600">
+                      400K+
+                    </p>
+                    <p class="text-gray-600 mt-1 text-sm">
+                      LinkedIn community
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-3xl font-extrabold text-blue-600">
+                      130K+
+                    </p>
+                    <p class="text-gray-600 mt-1 text-sm">
+                      Telegram community
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-3xl font-extrabold text-blue-600">
+                      30K+
+                    </p>
+                    <p class="text-gray-600 mt-1 text-sm">
+                      Instagram community
+                    </p>
+                  </div>
+                  <div>
+                    <p class="text-3xl font-extrabold text-blue-600">
+                      8K+
+                    </p>
+                    <p class="text-gray-600 mt-1 text-sm">
+                      Facebook community
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <script src="https://cdn.tailwindcss.com"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+            </head>
+
+            <body class="bg-[#ebe9db]">
+              <footer class="max-w-7xl mx-auto px-6 py-16">
+                <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-12 md:gap-0">
+                  <div>
+                    <h2 class="font-extrabold text-xl mb-6 text-[#111111]">Useful Links</h2>
+                    <ul class="text-[#111111] space-y-4 list-disc list-inside font-normal text-base">
+                      <li>Home</li>
+                      <li>About Us</li>
+                      <li>Services</li>
+                      <li>Internships</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h2 class="font-extrabold text-xl mb-6 text-[#111111]">Legal Links</h2>
+                    <ul class="text-[#111111] space-y-4 list-disc list-inside font-normal text-base">
+                      <li>Privacy policy</li>
+                      <li>Refund policy</li>
+                      <li>Terms and conditions</li>
+                    </ul>
+                  </div>
+                  <div class="md:max-w-xs">
+                    <h2 class="font-extrabold text-xl mb-4 text-[#111111]">Contact Info</h2>
+                    <p class="text-[#111111] font-normal text-base leading-relaxed mb-3">
+                      New Police Line Chowk Muzaffarpur, Bihar India!.
+                    </p>
+                    <p class="text-[#111111] font-extrabold text-base mb-6">asap@itsolution.in</p>
+                    <p class="text-[#111111] font-normal text-base mb-3">Subscribe for daily updates</p>
+                    <input type="email" placeholder="Enter your email address"
+                      class="w-full bg-[#f5f5f5] text-[#999999] placeholder:text-[#999999] px-4 py-3 mb-6 focus:outline-none" />
+                    <button
+                      class="bg-black text-white rounded-full px-10 py-4 block mx-auto text-center text-sm font-normal">
+                      Join our mailing list now
+                    </button>
+                  </div>
+                </div>
+                <div class="mt-16 text-center">
+                  <h3 class="font-extrabold text-2xl mb-6 text-[#111111]">Follow Us</h3>
+                  <div class="flex justify-center gap-16 text-black text-2xl mb-8">
+                    <i class="fab fa-instagram cursor-pointer" aria-hidden="true"></i>
+                    <i class="far fa-envelope cursor-pointer" aria-hidden="true"></i>
+                    <i class="fab fa-linkedin-in cursor-pointer" aria-hidden="true"></i>
+                    <i class="fab fa-telegram-plane cursor-pointer" aria-hidden="true"></i>
+                  </div>
+                  <p class="text-[#111111] font-normal text-base">
+                    Copyright ©2025 <strong>ASAPITSOLUTION.</strong> All Rights Reserved Designed By Team
+                    <strong>ASAPITSOLUTION</strong>
+                  </p>
+                </div>
+              </footer>
+            </body>
+
+</html>

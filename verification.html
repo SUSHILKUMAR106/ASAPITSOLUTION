@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ASAPITSOLUTION - Certificate Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto&family=Inter&family=Roboto+Mono&display=swap" rel="stylesheet" />
+    <style>
+        html {
+            font-size: 14px;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+            touch-action: manipulation;
+        }
+        
+        @media (min-width: 768px) {
+            html {
+                font-size: 16px;
+            }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .font-logo {
+            font-family: 'Roboto Slab', serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #3a2e4d 0%, #00a8f1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: white;
+            z-index: 40;
+            padding-top: 5rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .dropdown-mobile {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .dropdown-mobile.active {
+            max-height: 500px;
+        }
+
+        .font-inter {
+            font-family: "Inter", sans-serif;
+        }
+
+        .font-roboto-mono {
+            font-family: "Roboto Mono", monospace;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        button, .btn {
+            min-width: 120px;
+            min-height: 44px;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .container, .max-w-7xl {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container, .max-w-7xl {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container, .max-w-7xl {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .md\:grid-cols-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        footer ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        footer li {
+            margin-bottom: 0.75rem;
+        }
+
+        @media (max-width: 767px) {
+            footer > div {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            footer div > div {
+                width: 100%;
+            }
+        }
+
+        .dropdown-toggle i.fa-caret-down {
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-toggle.active i.fa-caret-down {
+            transform: rotate(180deg);
+        }
+
+        /* Verification Page Styles */
+        .verification-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        #search {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        #search:focus {
+            border-color: #6200ea;
+        }
+
+        #itemList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        #itemList li {
+            padding: 12px 20px;
+            background-color: #fafafa;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            color: #333;
+            text-align: left;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        #itemList li.hidden {
+            opacity: 0;
+            transform: scale(0.9);
+            height: 0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .highlight {
+            background-color: #ffeb3b;
+            font-weight: bold;
+            padding: 2px;
+            border-radius: 2px;
+        }
+
+        .no-results {
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .verification-container {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+            
+            #search {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body class="m-0 p-0">
+    <header class="w-full bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center px-4 py-4 sm:px-6">
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-[#00a8f1] to-[#3a2e4d] rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-xl sm:text-2xl">AI</span>
+                </div>
+                <div class="leading-tight">
+                    <h1 class="font-logo text-xl sm:text-3xl gradient-text font-bold">Asap IT Solutions</h1>
+                    <p class="text-[#0f5f7f] text-xs sm:text-sm mt-1">Innovative Technology Partners</p>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-4 sm:space-x-8 text-[#0f5f7f] font-medium text-sm sm:text-base">
+                    <li>
+                        <a class="text-[#4a1f1f] hover:text-[#00a8f1] transition-colors border-b-2 border-transparent hover:border-[#00a8f1] pb-1" href="index.html">
+                            Home
+                        </a>
+                    </li>
+                    <li class="relative group">
+                        <a class="inline-flex items-center hover:text-[#00a8f1] transition-colors" href="error.html">
+                            Services
+                            <i class="fas fa-caret-down ml-1 text-sm"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10 hidden group-hover:block">
+                            <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Web Development</a>
+                            <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Mobile Apps</a>
+                            <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Cloud Solutions</a>
+                            <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">AI Services</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product.html" class="hover:text-[#00a8f1] transition-colors">
+                            
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="OurInternship.html" class="hover:text-[#00a8f1] transition-colors">
+                            Internships
+                        </a>
+                    </li>
+                    <li class="relative group">
+                        <a class="inline-flex items-center hover:text-[#00a8f1] transition-colors" href="error.html">
+                            Jobs
+                            <i class="fas fa-caret-down ml-1 text-sm"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10 hidden group-hover:block">
+                            <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Current Openings</a>
+                            <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Apply Now</a>
+                            <a href="error.html" class="block px-4 py-2 text-gray-800 hover:bg-[#f0f8ff]">Career Growth</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="verification.html" class="hover:text-[#00a8f1] transition-colors">
+                            Verification
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html" class="hover:text-[#00a8f1] transition-colors">
+                            About Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="error.html" class="hover:text-[#00a8f1] transition-colors">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuButton" class="md:hidden text-[#0f5f7f] text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu">
+            <button class="mobile-menu-close text-[#0f5f7f] focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="space-y-4 text-[#0f5f7f] font-medium text-lg">
+                <li>
+                    <a class="block py-2 border-b border-gray-100" href="index.html">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown-toggle flex justify-between items-center py-2 border-b border-gray-100 cursor-pointer">
+                        <span>Services</span>
+                        <i class="fas fa-caret-down"></i>
+                    </div>
+                    <div class="dropdown-mobile pl-4">
+                        <a href="error.html" class="block py-2 text-gray-600">Web Development</a>
+                        <a href="error.html" class="block py-2 text-gray-600">Mobile Apps</a>
+                        <a href="error.html" class="block py-2 text-gray-600">Cloud Solutions</a>
+                        <a href="error.html" class="block py-2 text-gray-600">AI Services</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="block py-2 border-b border-gray-100" href="product.html">
+                        Products
+                    </a>
+                </li>
+                <li>
+                    <a class="block py-2 border-b border-gray-100" href="OurInternship.html">
+                        Internships
+                    </a>
+                </li>
+                <li>
+                    <div class="dropdown-toggle flex justify-between items-center py-2 border-b border-gray-100 cursor-pointer">
+                        <span>Jobs</span>
+                        <i class="fas fa-caret-down"></i>
+                    </div>
+                    <div class="dropdown-mobile pl-4">
+                        <a href="error.html" class="block py-2 text-gray-600">Current Openings</a>
+                        <a href="error.html" class="block py-2 text-gray-600">Apply Now</a>
+                        <a href="error.html" class="block py-2 text-gray-600">Career Growth</a>
+                    </div>
+                </li>
+                <li>
+                    <a class="block py-2 border-b border-gray-100" href="verification.html">
+                        Verification
+                    </a>
+                </li>
+                <li>
+                    <a class="block py-2 border-b border-gray-100" href="about.html">
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a class="block py-2 border-b border-gray-100" href="error.html">
+                        Contact Us
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="min-h-screen">
+        <div class="verification-container">
+            <h1 class="text-2xl font-bold mb-6">Certificate Verification</h1>
+            <input type="text" id="search" placeholder="Enter certificate number..." autocomplete="off">
+            <ul id="itemList">
+                <!-- Sample certificate numbers  -->
+                
+            </ul>
+            <div id="noResults" class="no-results">No matching certificates found</div>
+        </div>
+    </main>
+
+    <footer class="bg-[#ebe9db] text-[#1a1a1a]">
+        <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-8 sm:gap-12 md:gap-0">
+                <div>
+                    <h2 class="font-extrabold text-lg sm:text-xl mb-4 sm:mb-6">Useful Links</h2>
+                    <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base font-normal">
+                        <li><a href="index.html" class="hover:text-[#00a8f1]">Home</a></li>
+                        <li><a href="about.html" class="hover:text-[#00a8f1]">About Us</a></li>
+                        <li><a href="error.html" class="hover:text-[#00a8f1]">Services</a></li>
+                        <li><a href="OurInternship.html" class="hover:text-[#00a8f1]">Internships</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="font-extrabold text-lg sm:text-xl mb-4 sm:mb-6">Legal Links</h2>
+                    <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base font-normal">
+                        <li><a href="error.html" class="hover:text-[#00a8f1]">Privacy policy</a></li>
+                        <li><a href="error.html" class="hover:text-[#00a8f1]">Refund policy</a></li>
+                        <li><a href="error.html" class="hover:text-[#00a8f1]">Terms and conditions</a></li>
+                    </ul>
+                </div>
+                <div class="md:max-w-xs mt-6 sm:mt-0">
+                    <h2 class="font-extrabold text-lg sm:text-xl mb-4 sm:mb-6 text-center md:text-left">Contact Info</h2>
+                    <p class="text-sm sm:text-base font-normal leading-relaxed mb-2">
+                        Lokenath bose garden lane Kolkata,West Bengal
+                    </p>
+                    <p class="font-extrabold text-sm sm:text-base mb-4 sm:mb-6">asapitsolutions2022@gmail.com</p>
+                    <p class="text-sm sm:text-base font-normal mb-3">Subscribe for daily updates</p>
+                    <input type="email" placeholder="Enter your email address"
+                        class="w-full bg-[#f5f5f7] placeholder:text-gray-400 text-sm sm:text-base font-normal px-4 py-2 sm:py-3 mb-4 sm:mb-6 focus:outline-none" />
+                    <button class="block mx-auto md:mx-0 bg-black text-white text-sm sm:text-base font-normal rounded-full px-6 py-3 sm:py-4 hover:bg-gray-800 transition-colors"
+                        type="button">
+                        Join our mailing list now
+                    </button>
+                </div>
+            </div>
+            <div class="mt-12 sm:mt-16 text-center">
+                <h3 class="font-extrabold text-xl sm:text-2xl mb-6 sm:mb-8">Follow Us</h3>
+                <div class="flex justify-center gap-8 sm:gap-16 text-2xl sm:text-3xl">
+                    <a href="#" aria-label="Instagram" class="hover:text-gray-700">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Email" class="hover:text-gray-700">
+                        <i class="far fa-envelope"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn" class="hover:text-gray-700">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" aria-label="Telegram" class="hover:text-gray-700">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+                <p class="mt-8 sm:mt-10 text-sm sm:text-base font-normal max-w-3xl mx-auto">
+                    Copyright ©2023 <span class="font-extrabold">ASAPITSOLUTION</span>. All Rights Reserved
+                    Designed By Team <span class="font-extrabold">ASAPITSOLUTION</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.classList.add('no-scroll');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+
+        // Dropdown toggles
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const dropdown = toggle.nextElementSibling;
+                dropdown.classList.toggle('active');
+                const icon = toggle.querySelector('i');
+                icon.classList.toggle('fa-caret-down');
+                icon.classList.toggle('fa-caret-up');
+            });
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+
+        // Certificate Verification Search Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const itemList = document.getElementById('itemList');
+            const items = Array.from(itemList.getElementsByTagName('li'));
+            const noResults = document.getElementById('noResults');
+            
+            // Store original content for each item
+            items.forEach(item => {
+                item.dataset.original = item.innerHTML;
+            });
+
+            function filterItems() {
+                const query = searchInput.value.trim().toLowerCase();
+                let hasMatches = false;
+                
+                items.forEach(item => {
+                    const originalText = item.dataset.original;
+                    const itemText = originalText.toLowerCase();
+                    
+                    if (query === '' || itemText.includes(query)) {
+                        item.innerHTML = query ? 
+                            originalText.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`) : 
+                            originalText;
+                        item.classList.remove('hidden');
+                        hasMatches = true;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Show/hide no results message
+                noResults.style.display = (query !== '' && !hasMatches) ? 'block' : 'none';
+            }
+
+            // Improved debounce function
+            function debounce(func, wait) {
+                let timeout;
+                return function() {
+                    const context = this, args = arguments;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), wait);
+                };
+            }
+
+            // Event listeners
+            searchInput.addEventListener('input', debounce(filterItems, 300));
+            searchInput.addEventListener('keyup', filterItems);
+            searchInput.focus();
+            
+            // Initial filter to handle any pre-filled search values
+            filterItems();
+        });
+    </script>
+</body>
+</html>
